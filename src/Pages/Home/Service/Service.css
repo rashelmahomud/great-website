@@ -1,0 +1,18 @@
+.service-box-btn {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    margin-left: -11px;
+    border: navajowhite;
+    padding: 9px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+.service-box-btn:hover{
+    color: orange;
+    background-color: white
+}
