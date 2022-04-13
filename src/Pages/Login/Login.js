@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const emailRaf = useRef('');
@@ -40,7 +40,7 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
-            <p>You can Register Here: <span onClick={navigateRegister}>pleases Register</span></p>
+            <p>You can Register Here: <Link to='/register' className='fw-bold cursor-pointer' onClick={navigateRegister}>pleases Register</Link></p>
         </div>
     );
 };
