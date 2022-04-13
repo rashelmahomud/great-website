@@ -6,19 +6,19 @@ const Services = () => {
 
     const [services, setServces] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch('services.json')
             .then(res => res.json())
             .then(data => setServces(data))
     }, []);
 
     return (
-        <div className='serbox-box'>
-            
+        <div id="services" className='serbox-box mt-4'>
+
             {
-                services.map(service => <Service 
-                key={service.id}
-                service = {service}
+                services.map(service => <Service
+                    key={service.id}
+                    service={service}
                 ></Service>)
             }
         </div>
