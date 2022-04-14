@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import SocialLogin from '../SocialLogin/SocialLogin/SocialLogin';
 
 const Register = () => {
 
@@ -11,7 +12,7 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
     const navigate = useNavigate('');
 
@@ -19,7 +20,7 @@ const Register = () => {
         navigate('/login')
 
     }
-    if(user){
+    if (user) {
         navigate('/home');
     }
     const handelRegister = event => {
@@ -28,7 +29,7 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        createUserWithEmailAndPassword(email, password,name);
+        createUserWithEmailAndPassword(email, password, name);
     }
     return (
         <div className='text-center mt-3 w-50 mx-auto'>
@@ -38,11 +39,11 @@ const Register = () => {
                 <input type="email" name="email" id="" placeholder='Email:' required />
                 <input type="password" name="password" id="" placeholder='password' required />
                 <Button variant="primary" type="submit">
-                    Submit
+                    Sign In
                 </Button>
             </form>
             <p>You can Register Here: <Link to='/login' className='fw-bold cursor-pointer' onClick={navigateLogin}>Already have an Account</Link></p>
-
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

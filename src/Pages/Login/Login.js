@@ -3,30 +3,39 @@ import { Button, Form } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import SocialLogin from './SocialLogin/SocialLogin/SocialLogin';
+
 
 const Login = () => {
 
+    let errorElements;
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
 
-      if(user){
+    if (user) {
         Navigate('/home');
     }
 
+    if (error) {
+        errorElements =
+            <div>
+                <p>Error: {error?.message}</p>
+            </div>
+    }
     const emailRaf = useRef('');
     const passwordRaf = useRef('');
     const navigate = useNavigate('');
 
- 
+
     const handelSubmite = event => {
         event.preventDefault();
         const email = emailRaf.current.value;
         const password = passwordRaf.current.value;
-        signInWithEmailAndPassword(email,password)
+        signInWithEmailAndPassword(email, password)
     }
     const navigateRegister = event => {
         navigate('/register')
@@ -48,14 +57,15 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control ref={passwordRaf} type="password" placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+                <Button className='w-50 my-3 mx-auto d-block' variant="primary" type="submit">
+                    Login
                 </Button>
             </Form>
+            {errorElements}
             <p>You can Register Here: <Link to='/register' className='fw-bold cursor-pointer' onClick={navigateRegister}>pleases Register</Link></p>
+
+            <SocialLogin></SocialLogin>
+
         </div>
     );
 };
