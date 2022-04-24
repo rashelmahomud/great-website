@@ -1,9 +1,11 @@
 import React from 'react';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Expert = ({ expert }) => {
     const { name, img } = expert;
     return (
         <div className='row'>
+            <PageTitle title='Expert'></PageTitle>
             <div className='mt-5 '>
                 <div class="card">
                     <img src={img} class="card-img-top" alt="..." />

@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import PageTitle from '../Shared/PageTitle/PageTitle';
 import SocialLogin from './SocialLogin/SocialLogin/SocialLogin';
 
 
@@ -16,6 +17,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
     if (user) {
         Navigate('/home');
     }
@@ -39,6 +41,11 @@ const Login = () => {
     }
     const navigateRegister = event => {
         navigate('/register')
+    }
+    const resetPassword = async () => {
+        const email = emailRaf.current.value;
+        await sendPasswordResetEmail(email);
+        alert('Sent email');
 
     }
     return (
@@ -63,8 +70,10 @@ const Login = () => {
             </Form>
             {errorElements}
             <p>You can Register Here: <Link to='/register' className='fw-bold cursor-pointer' onClick={navigateRegister}>pleases Register</Link></p>
+            <p>Forgate Change Password: <button className='fw-bold cursor-pointer btn btn-link' onClick={resetPassword}>Forget Password</button></p>
 
             <SocialLogin></SocialLogin>
+            <PageTitle title='login'></PageTitle>
 
         </div>
     );

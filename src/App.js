@@ -10,6 +10,7 @@ import Login from './Pages/Login/Login';
 import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
 import NoteFound from './Pages/Shared/NoteFound/NoteFound';
 import Register from './Pages/Login/Register/Register';
+import AddService from './Pages/AddService/AddService';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/services/:servicesId' element={<ServiceDetails></ServiceDetails>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/addservice' element={<AddService></AddService>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/notefound' element={<NoteFound></NoteFound>}></Route>
       </Routes>
